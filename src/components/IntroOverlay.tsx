@@ -15,11 +15,8 @@ export default function IntroOverlay() {
 
   useStageFrame(({ intro: progress }) => {
     const node = root.current;
-    if (!node) return;
-    if (progress >= 1) {
-      node.style.display = "none";
-      return;
-    }
+
+    if (!node || progress >= 1) return;
     node.style.opacity = intro.loader(progress).toFixed(3);
 
     if (fill.current) fill.current.style.scale = `${progress.toFixed(3)} 1`;
@@ -35,7 +32,7 @@ export default function IntroOverlay() {
   return (
     <div
       ref={root}
-      className="stage-only pointer-events-none fixed inset-0 z-5 grid items-end justify-items-center pb-[12vh] text-center text-ink"
+      className="stage-only stage-loader pointer-events-none fixed inset-0 z-5 grid items-end justify-items-center pb-[12vh] text-center text-ink"
     >
       <div>
         <span className="font-mono text-[11px] tracking-loud opacity-70">

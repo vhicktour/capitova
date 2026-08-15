@@ -38,8 +38,6 @@ export default function SiteNav() {
       if (!node) return;
       const active = index === best;
       node.dataset.active = String(active);
-      // Styling hook and semantics are separate concerns: `data-active` drives
-      // the underline, `aria-current` tells a screen reader where it is.
       if (active) node.setAttribute("aria-current", "true");
       else node.removeAttribute("aria-current");
     });

@@ -23,11 +23,6 @@
   --color-hairline: #2c2b33;
 }
 
-/*
- * Letter-spacing scale. Two families that must not be mixed: mono UI lettering
- * opens up as it gets smaller and louder, display type tightens as it scales.
- * Not `inline`, so each token is also a real custom property to read in CSS.
- */
 @theme {
   --tracking-spec: 0.06em;
   --tracking-cta: 0.1em;
@@ -68,16 +63,8 @@
   will-change: opacity, translate;
 }
 
-/*
- * The hero is the largest paint on the page, so it cannot wait for three.js to
- * arrive and raise it — it is lit from the markup and the first frame inherits
- * it at the same opacity. Only while the intro is going to run: on a return
- * visit the flight is skipped and the timeline may resume anywhere, and a
- * fixed panel lit before the driver can place it would flash over that.
- */
-:root[data-intro="run"] .stage-layer[data-lit] {
-  opacity: 1;
-  visibility: visible;
+:root[data-intro="run"] body {
+  overflow: hidden;
 }
 
 /*
@@ -104,6 +91,10 @@
 }
 
 :root:not([data-stage="live"]) .stage-only {
+  display: none;
+}
+
+:root:not([data-intro="run"]) .stage-loader {
   display: none;
 }
 

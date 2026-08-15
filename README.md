@@ -7,22 +7,19 @@ The whole page is a single continuous camera move through one 3D object. You
 scroll; a size-0 capsule rotates into view, is measured against an engineering
 drawing, splits at the seam, pours its granules, and one of those granules
 becomes the tracer atom the impact figures are measured with. There are no
-stacked page sections behind it — the copy is pinned to positions on that
-timeline.
-
-**Live site:** _add deployed URL_
+stacked page sections behind it
 
 ---
 
 ## Stack
 
-| | |
-|---|---|
-| Framework | Next.js 16 (App Router, Turbopack) |
-| Language | TypeScript |
-| Styling | Tailwind CSS v4 (CSS-first config) |
-| 3D | Three.js (`MeshToonMaterial`, hand-built geometry) |
-| Fonts | Sora (display), JetBrains Mono (UI lettering) |
+|           |                                                    |
+| --------- | -------------------------------------------------- |
+| Framework | Next.js 16 (App Router, Turbopack)                 |
+| Language  | TypeScript                                         |
+| Styling   | Tailwind CSS v4 (CSS-first config)                 |
+| 3D        | Three.js (`MeshToonMaterial`, hand-built geometry) |
+| Fonts     | Sora (display), JetBrains Mono (UI lettering)      |
 
 No animation library. The scroll choreography is ~110 lines of easing functions
 in `src/lib/scene/choreography.ts`; GSAP or Framer Motion would have added a
@@ -49,7 +46,7 @@ npm run lint    # eslint
 
 **Two worlds, one object.** The page moves between a dark studio and a pale
 blueprint. Dark is the product: warm key light, deep cobalt, heavy vignette.
-Paper is the engineering behind it — flat ambient light, dashed centreline,
+Paper is the engineering behind it.. flat ambient light, dashed centreline,
 dimension lines across the capsule's 21.7 mm length. Scrolling crosses between
 them twice. The palette is a bone shell (`#e6dfd2`) against cobalt (`#3556c8`)
 on near-black (`#1c1b1a`), inverting to `#dcd8d0` paper. Both the 3D materials
@@ -57,11 +54,11 @@ and the page's `--ink` / `--bg` custom properties are driven from one `paper`
 weight, so the HTML and the WebGL scene cross-fade as one surface rather than as
 a canvas sitting on a page.
 
-**Type does two jobs.** Sora carries the argument — tight tracking, heavy
+**Type does two jobs.** Sora carries the argument, tight tracking, heavy
 weights, large sizes. JetBrains Mono carries the instrumentation: section tags,
 specs, the scene counter, the stat labels. Letter-spacing is a named scale
 (`--tracking-spec` through `--tracking-loud`) rather than ad-hoc values, and the
-two families move in opposite directions — mono opens up as it gets smaller and
+two families move in opposite directions, mono opens up as it gets smaller and
 louder, display tightens as it scales.
 
 **Restraint on the copy.** Each scene gets one heading and at most one
@@ -83,8 +80,8 @@ updates through React state would rebuild the tree every frame.
 
 **Keyframes, not tweens.** Camera pose and capsule rotation are arrays of eight
 keys interpolated with a quintic smoothstep, so scrubbing backwards is exactly
-symmetric. Everything else is a named weight in `phase` — `paper`, `open`,
-`pour`, `atom`, `rise`, `annotations`, `labels`, `counters` — each a smoothstep
+symmetric. Everything else is a named weight in `phase`, `paper`, `open`,
+`pour`, `atom`, `rise`, `annotations`, `labels`, `counters`, each a smoothstep
 over an explicit scroll window. Retiming a beat means moving two numbers.
 
 **Cost control.** `createFrameRenderer` allocates nothing per frame: scratch
@@ -106,7 +103,7 @@ leave their fixed positions, the canvas-dependent chrome drops out, and the page
 reads as an ordinary stacked document with every heading, paragraph, spec and
 statistic intact.
 
-`prefers-reduced-motion` is honoured in both layers — CSS collapses transitions
+`prefers-reduced-motion` is honoured in both layers, CSS collapses transitions
 and the drift animation, and the scene freezes camera drift, capsule idle,
 nucleus rotation and electron orbits, skips the intro flight, and switches
 in-page navigation from smooth to instant.

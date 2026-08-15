@@ -16,10 +16,6 @@ type Subscribe = (listener: FrameListener) => () => void;
 
 export const StageFrameContext = createContext<Subscribe | null>(null);
 
-/**
- * Subscribe an overlay to the render loop. Listeners mutate their own DOM node
- * directly: driving 60fps updates through React state would thrash the tree.
- */
 export function useStageFrame(listener: FrameListener) {
   const subscribe = useContext(StageFrameContext);
   const latest = useRef(listener);

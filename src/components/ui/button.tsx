@@ -23,7 +23,7 @@ export const buttonVariants = cva(
       size: {
         pill: "px-5.5 py-3.25 font-mono text-[13px] tracking-cta",
         sm: "px-4 py-2 font-mono text-[11px] tracking-trigger",
-        box: "px-[22px] py-3 font-mono text-xs tracking-hud",
+        box: "px-5.5 py-3 font-mono text-xs tracking-hud",
         nav: "px-0.5 py-1.5 font-mono text-xs tracking-nav",
         menu: "px-3 py-2.5 font-mono text-xs tracking-nav",
         bare: "font-mono text-[11px] tracking-nav",
