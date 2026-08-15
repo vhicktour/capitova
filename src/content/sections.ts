@@ -23,7 +23,7 @@ export const NAV_LINKS: readonly { label: string; target: SceneTarget }[] = [
 export const HERO = {
   tag: "GRANULE BIOSCIENCES",
   heading: "Medicine, delivered to the millimetre.",
-  body: "We engineer oral capsules that carry fragile molecules — peptides, oligonucleotides, live cells — through the gut intact, and let go exactly where they work.",
+  body: "We engineer oral capsules that carry peptides, oligonucleotides and live cells through the gut intact, and let go exactly where they work.",
   center: 0.38,
   width: 0.52,
 } as const;
@@ -71,7 +71,7 @@ export const PAYLOADS = [
 export const PIPELINE: CaptionSection = {
   tag: "04 / PIPELINE",
   heading: "Follow one dose down.",
-  body: "Six programs ride the same 0.9 mm granule — from metabolic peptides to gut-restricted immunology. The first is in the clinic.",
+  body: "Six programs ride the same 0.9 mm granule, from metabolic peptides to gut-restricted immunology. The first is in the clinic.",
   center: 4.72,
   width: 0.48,
   className: "left-[clamp(24px,7vw,120px)] bottom-[24vh]",

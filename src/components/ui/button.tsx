@@ -6,7 +6,7 @@ import type { ComponentProps } from "react";
 import { cn } from "@/lib/cn";
 
 export const buttonVariants = cva(
-  "group inline-flex items-center pointer-events-auto transition duration-250 disabled:pointer-events-none disabled:opacity-50",
+  "group inline-flex cursor-pointer items-center pointer-events-auto transition duration-250 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
