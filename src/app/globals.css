@@ -69,6 +69,18 @@
 }
 
 /*
+ * The hero is the largest paint on the page, so it cannot wait for three.js to
+ * arrive and raise it — it is lit from the markup and the first frame inherits
+ * it at the same opacity. Only while the intro is going to run: on a return
+ * visit the flight is skipped and the timeline may resume anywhere, and a
+ * fixed panel lit before the driver can place it would flash over that.
+ */
+:root[data-intro="run"] .stage-layer[data-lit] {
+  opacity: 1;
+  visibility: visible;
+}
+
+/*
  * Progressive enhancement. `data-stage="live"` is set by an inline script before
  * first paint and replaced with "fallback" if the WebGL stage cannot start, so
  * this branch covers no-JS, a failed chunk and an unsupported GPU alike: the

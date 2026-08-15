@@ -11,16 +11,17 @@ import { applyPanelStyle } from "@/lib/stage/panel";
 export default function HeroPanel() {
   const ref = useRef<HTMLDivElement>(null);
 
-  useStageFrame(({ p, ui }) => {
+  useStageFrame(({ p }) => {
     const node = ref.current;
     if (!node) return;
     const { opacity, offsetY } = captionAt(p, HERO.center, HERO.width, true);
-    applyPanelStyle(node, opacity * ui, offsetY);
+    applyPanelStyle(node, opacity, offsetY);
   });
 
   return (
     <div
       ref={ref}
+      data-lit
       className="stage-layer inset-y-0 left-0 z-2 flex w-full flex-col justify-end px-[clamp(20px,6vw,120px)] pb-[13vh] text-ink lg:w-auto lg:max-w-[min(680px,46vw)] lg:justify-center lg:pb-0 lg:pr-6"
     >
       <Tag>{HERO.tag}</Tag>

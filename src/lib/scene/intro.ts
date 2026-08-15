@@ -5,7 +5,10 @@ import {
   type CameraPose,
 } from "./choreography";
 
-export const INTRO_DURATION = 3.2;
+export const INTRO_DURATION = 2.4;
+
+/** How long the flight has left once the visitor asks to get on with it. */
+export const INTRO_SKIP_DURATION = 0.4;
 
 export const INTRO_SCALE = 0.16;
 

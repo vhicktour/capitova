@@ -34,6 +34,7 @@ export default function StatGrid() {
             ref={(node) => {
               values.current[index] = node;
             }}
+            data-settled={format(stat, 1)}
             className="block text-[clamp(24px,2.6vw,36px)] font-bold tracking-display tabular-nums"
           >
             {format(stat, 1)}
