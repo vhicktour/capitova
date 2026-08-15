@@ -1,0 +1,15 @@
+{
+  // Tailwind v4 keeps its config in CSS. `@theme`, `@utility` and friends are
+  // real at-rules that the build compiles, but VS Code's built-in CSS server
+  // does not know them — hand globals.css to the Tailwind extension instead,
+  // and stop the built-in validator reporting them as unknown.
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore",
+  // The `cn()` and `cva()` wrappers hold class strings too, so IntelliSense
+  // should complete and lint inside them.
+  "tailwindCSS.classFunctions": ["cn", "cva"]
+}

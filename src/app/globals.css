@@ -1,26 +1,126 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #efe9df;
+  --bg: #1c1b1a;
+  --vignette: 0.75;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-sora);
+  --font-mono: var(--font-jetbrains-mono);
+
+  --color-ink: var(--ink);
+  --color-stage: var(--bg);
+
+  --color-cobalt: #3556c8;
+  --color-cobalt-deep: #27409a;
+  --color-cobalt-soft: #5d79e0;
+
+  --color-on-cobalt: #f2efe8;
+  --color-ink-fixed: #efe9df;
+  --color-surface-deep: #17161a;
+  --color-hairline: #2c2b33;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/*
+ * Letter-spacing scale. Two families that must not be mixed: mono UI lettering
+ * opens up as it gets smaller and louder, display type tightens as it scales.
+ * Not `inline`, so each token is also a real custom property to read in CSS.
+ */
+@theme {
+  --tracking-spec: 0.06em;
+  --tracking-cta: 0.1em;
+  --tracking-nav: 0.12em;
+  --tracking-tag: 0.14em;
+  --tracking-hud: 0.18em;
+  --tracking-trigger: 0.2em;
+  --tracking-loud: 0.3em;
+
+  --tracking-heading: -0.01em;
+  --tracking-display: -0.02em;
+  --tracking-mega: -0.03em;
+}
+
+@layer base {
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-display), sans-serif;
+  }
+
+  ::selection {
+    background: var(--color-cobalt);
+    color: #f2efe8;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-cobalt-soft);
+    outline-offset: 3px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility stage-layer {
+  position: fixed;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  will-change: opacity, translate;
+}
+
+/*
+ * Progressive enhancement. `data-stage="live"` is set by an inline script before
+ * first paint and replaced with "fallback" if the WebGL stage cannot start, so
+ * this branch covers no-JS, a failed chunk and an unsupported GPU alike: the
+ * panels leave their fixed positions and the page reads as an ordinary stacked
+ * document. Anything that only makes sense against the stage drops out.
+ */
+:root:not([data-stage="live"]) .stage-layer {
+  position: static;
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+  translate: none;
+  max-width: 62ch;
+  margin-inline: auto;
+  padding-block: clamp(32px, 7vh, 80px);
+  text-align: start;
+}
+
+:root:not([data-stage="live"]) .stage-layer p {
+  margin-inline-start: 0;
+}
+
+:root:not([data-stage="live"]) .stage-only {
+  display: none;
+}
+
+@keyframes capsule-drift {
+  from {
+    transform: rotate(-34deg) translateY(-6px);
+  }
+  to {
+    transform: rotate(-42deg) translateY(8px);
+  }
+}
+
+@utility capsule-drift {
+  animation: capsule-drift 7s ease-in-out infinite alternate;
+  filter: drop-shadow(0 18px 24px rgb(0 0 0 / 0.45));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capsule-drift {
+    animation: none;
+    transform: rotate(-38deg);
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
